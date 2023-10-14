@@ -1,0 +1,82 @@
+
+<div class="bg-white dark:bg-slate-950 p-3 lg:p-6  rounded-lg h-full    sm:shadow sm:shadow-slate-200 dark:sm:shadow-gary-400  " >
+
+
+  <div  class="   w-full  grid justify-items-center py-4 bg-indigo-50 dark:bg-gray-950 rounded-tr-lg  rounded-br-lg mt-2 mb-4  ">
+      <img class="w-24    h-24 p-1 rounded-full ring-2 ring-indigo-300 dark:ring-gray-500"
+
+         [src]="user().photo_url"
+         alt="{{user().name}}">
+          <h3 class="font-medium mt-2  text-base text-gray-800">{{ user().name }}</h3>
+          <div class="font-medium   text-sm text-gray-500">{{ user().email }}</div>
+  </div>
+
+
+  <app-link class="w-full "  [link]="'/home'" [active]="isActive('/home')">
+
+      <i class="fa-solid  fa-house-user mr-2"></i>
+    Home
+  </app-link>
+
+  <app-link class="w-full  "  [link]="'/dashboard'" [active]="isActive('/dashboard')">
+      <i class="fa-solid fa-house-user mr-2"></i>
+       {{'Dashboard' }}
+  </app-link>
+
+  <app-link class="w-full "  [link]="'/profile'" [active]="isActive('/profile')">
+      <i class="fa-regular fa-user mr-2"></i> {{'profile' }}
+  </app-link>
+
+
+    <div class="">
+        <div  class="border-t border-b   border-indigo-100  dark:border-gray-600 my-2 py-2 pl1  " [ngClass]="style()">
+
+
+          <div class=" w-full   space-x-8 mt-1    ">
+              <div class="w-full flex my-2 justify-center truncate hover:text-ellipsis text-gray-300  hover:text-gray-500 rounded-tr-lg " >
+
+               {{ title}}
+
+              </div>
+          </div>
+          <app-recursive-link [activeRoot]="categoryservice.activeRoot()"></app-recursive-link>
+
+        </div>
+
+       <ng-content></ng-content>
+    </div>
+
+
+<ng-container *ngIf="!isAuth(); else logout">
+
+
+   <app-link class="w-full "  [link]="'/login'" [active]="isActive('/login')">
+
+       <i class="fa-regular fa-user mr-2"></i> {{'login' }}
+
+   </app-link>
+
+   <app-link class="w-full "  [link]="'/register'" [active]="isActive('/register')">
+
+       <i class="fa-regular fa-user mr-2"></i> {{'register' }}
+
+   </app-link>
+</ng-container>
+<ng-template #logout>
+
+            <button [ngClass]="logoutStyle()" type="button" (click)="logoutx()" class="sm:flex flex-row text-blue-900 ring-1 ring-indigo-100 dark:ring-gray-700  dark:text-gray-50 border-gray-300 dark:border-indigo-100 bg-slate-100 dark:bg-gray-950   hover:text-indigo-900 dark:hover:text-blue-900 hover:bg-indigo-100 dark:hover:bg-indigo-100 hover:border-blue-900 dark:hover:border-indigo-900 focus:tex t-gray-800 focus:bg-gray-50 focus:border-gray-300 button block w-full   px-2 py-2  text-base font-medium focus:outline-none transition">
+
+              <i class="fa-solid fa-arrow-right-from-bracket mx-1 my-auto"></i>
+                {{'Logout' }}
+            </button>
+
+
+
+</ng-template>
+
+
+
+
+
+</div>
+

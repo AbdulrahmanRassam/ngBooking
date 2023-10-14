@@ -1,0 +1,51 @@
+<div class="mt-1" *ngIf="control">
+  <label
+  class="block mx-1 font-medium text-sm text-gray-700 dark:text-gray-50 "
+  [for]="input.key" *ngIf="input.label" [class.required]="isRequired">
+  {{   input.label  }}</label>
+
+  <div  class=" flex justify-between mt-1 p-1.5  w-full dark:bg-gray-500 dark:text-white border border-gray-300 focus:outline-none focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm">
+
+    <div  *ngIf="previewImage" class="  h-20 w-28 group  bg-no-repeat object-cover object-center group-hover:opacity-75 aspect-h-1 aspect-w-1  overflow-hidden rounded-lg bg-gray-50 xl:aspect-h-8 xl:aspect-w-7 ">
+      <img [src]="previewImage" class="rounded-xl p-0.5">
+    </div>
+    <div *ngIf="previewImage" class="w-20 mx-auto">
+
+    </div>
+    <input class="my-auto " *ngIf="input.controlType=='image'"
+    (change)="imgFileSelected($event);"
+    [required]="isRequired"
+    [type]="input.type"
+    [id]="input.key"
+    [formControl]="control"
+
+      type="file" accept="image/*"
+    />
+
+    <div class="col-4">
+      <button
+        class="btn btn-success btn-sm float-right"
+        [disabled]="!selectedFiles"
+        (click)="upload()"
+      >
+        Upload
+      </button>
+    </div>
+
+
+  </div>
+
+  <app-validation-errors
+    [customErrorMessages]="input.customErrorMessages"
+    [errors]="control.errors"
+
+  >
+  </app-validation-errors>
+
+
+
+<div  class="alert alert-secondary" role="alert">
+  {{ message }}
+</div>
+
+</div>

@@ -1,0 +1,38 @@
+
+  <ng-container *ngIf="!screen.is_main;else tree">
+    <app-link  [link]="screen.url"   [active]="isActive" >
+      {{locale=='en'?screen.name:screen.arName }}
+
+    </app-link>
+  </ng-container>
+
+  <ng-template #tree>
+    <ng-container *ngIf="!isActive; else active">
+      <button class=" w-full   space-x-8 mt-1    " (click)="setActiveEvent(screen.progCode)" >
+        <div class="w-full flex my-2 justify-start truncate hover:text-ellipsis text-blue-900 dark:text-gray-200 hover:text-gray-500  " >
+          <i class="fa-solid fa-folder mx-2"></i>
+          {{locale=='en'?screen.name:screen.arName }}
+
+        </div>
+      </button>
+    </ng-container >
+    <ng-template #active>
+        <div  class="border-t border-b   border-indigo-100 dark:border-gray-400 my-2 py-2 pl1  " [ngClass]="style()">
+
+
+          <div class=" w-full   space-x-8 mt-1    ">
+              <div class="w-full flex my-2 justify-start truncate hover:text-ellipsis text-blue-900 dark:text-gray-200 hover:text-gray-500  " >
+
+                <i class="fa-solid fa-folder-open mx-2"></i>
+                {{locale=='en'?screen.name:screen.arName }}
+
+              </div>
+          </div>
+          <div class="pl-4 ">
+            <ng-content></ng-content>
+          </div>
+        </div>
+
+    </ng-template>
+
+  </ng-template>

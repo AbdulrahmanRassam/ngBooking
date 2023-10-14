@@ -1,0 +1,8 @@
+
+<ng-container  *ngFor="let screen of getScreens(activeRoot)">
+
+  <app-side-bar-package [screen]="screen" [isActive]="isActive('/'+screen.url)||isMainActive(screen.progCode)" (onClick)="setActive($event)">
+
+    <app-recursive-link [activeRoot]="screen.progCode"></app-recursive-link>
+  </app-side-bar-package>
+</ng-container>

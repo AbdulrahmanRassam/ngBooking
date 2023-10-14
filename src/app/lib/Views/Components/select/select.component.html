@@ -1,0 +1,16 @@
+<div class="dvs-form-control py-1" *ngIf="control">
+  <label [for]="selectId" *ngIf="label" [class.required]="isRequired">{{
+    label
+  }}</label>
+  <select *ngIf="control" [formControl]="control" [id]="selectId" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+    <option *ngFor="let option of options" [value]="option">
+      {{ option }}
+    </option>
+  </select>
+
+  <app-validation-errors
+    [customErrorMessages]="customErrorMessages"
+    [errors]="control.errors"
+  >
+  </app-validation-errors>
+</div>

@@ -1,0 +1,8 @@
+<button type="submit" [disabled]="disabled"  (click)="onClickButton($event)" disabledOnLoading cLoadingButton class="inline-flex items-center px-4 py-2 bg-gray-900 dark:bg-gray-100 border border-transparent rounded-md font-semibold text-xs text-white dark:text-blue-900 uppercase tracking-widest hover:bg-gray-700 dark:hover:bg-slate-200 active:bg-gray-800 focus:outline-none focus:border-gray-100 dark:focus:border-gray-900 focus:ring focus:ring-gray-300 dark:focus:ring-indigo-300 disabled:opacity-25 transition">
+
+  <ng-content></ng-content>
+
+      <div *ngIf="isLoading" class="dark:text-gray-900 ">
+          <i  class="animate-spin ... fa-solid fa-spinner mx-1"></i>
+      </div>
+</button>

@@ -1,0 +1,16 @@
+<div class=" space-x-8 mt-2  w-full sm:flex flex-row">
+
+  <a
+
+  class="button block w-full px-4 py-2  text-base font-medium focus:outline-none transition"
+ [ngClass]="style()"
+
+ [routerLink]="link"
+ [routerLinkActive]="''"
+ [routerLinkActiveOptions]="{exact:true}"
+ >
+    <ng-content></ng-content>
+
+  </a>
+
+</div>

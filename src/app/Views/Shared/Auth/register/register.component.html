@@ -1,0 +1,17 @@
+<div class=" sm:px-4 md:px-8  xl:px-16 mt-32 ">
+
+
+  <div class=" md:mt-0 md:col-span-1">
+    <div class=" flex justify-center">
+      <img src="assets/logo.png" class="w-80 h-32  " alt="">
+    </div>
+    <app-form-section [formFields]="getFields" (onSubmited)="onSubmit($event)" [url]="url">
+      <h1 title> Register</h1>
+
+
+      <div description >
+           New User  Registeration
+      </div>
+    </app-form-section>
+  </div>
+</div>

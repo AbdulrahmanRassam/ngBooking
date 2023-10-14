@@ -1,0 +1,20 @@
+<div class="mt-1" *ngIf="control">
+  <label
+  class="block mx-1 font-medium text-sm text-gray-700 dark:text-gray-50 "
+  [for]="input.key" *ngIf="input.label" [class.required]="isRequired">
+  {{
+    input.label
+  }}</label>
+  <input class="mt-1 p-1.5 block w-full dark:bg-gray-500 dark:text-white border border-gray-300 focus:outline-none focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm"
+    [required]="isRequired"
+    [type]="input.type"
+    [id]="input.key"
+    [formControl]="control"
+  />
+
+  <app-validation-errors
+    [customErrorMessages]="input.customErrorMessages"
+    [errors]="control.errors"
+  >
+  </app-validation-errors>
+</div>
