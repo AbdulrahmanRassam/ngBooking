@@ -36,14 +36,20 @@ export class JobService {
 
   apply(id:number){
 
-    this.data.user_id=this.auth.user().id;
-    this.data.job_id=id;
-    this.backendService.post('/job-apply',this.data).subscribe(
-      res=>{
-        this.alert.alert('Apply','Job Applied Successfully')
-        return res;
-      }
-    )
+    if(this.auth.isAuthenticated()){
+
+      this.data.user_id=this.auth.user().id;
+      this.data.job_id=id;
+      this.backendService.post('/job-apply',this.data).subscribe(
+        res=>{
+          this.alert.alert('Apply','Job Applied Successfully')
+          return res;
+        }
+      )
+    }else{
+      this.alert.alert('Apply','You should Login Befor Apply')
+
+    }
   }
   accept(apply:Apply){
 

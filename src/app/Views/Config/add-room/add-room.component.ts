@@ -67,7 +67,7 @@ export class AddRoomComponent {
 
         label: 'Type',
         type:'text',
-        values:['Employee','Admin','User'],
+        values:['Available','Double','Suite'],
 
         customErrorMessages: {
           required: ' This password is Required'

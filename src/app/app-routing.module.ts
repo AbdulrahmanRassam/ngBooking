@@ -9,18 +9,19 @@ import { RequestsComponent } from './Views/Booking/requests/requests.component';
 import { JobsComponent } from './Views/Job/jobs/jobs.component';
 import { AddJobComponent } from './Views/Config/add-job/add-job.component';
 import { JobRequestsComponent } from './Views/Job/job-requests/job-requests.component';
+import { isAuthGuard } from './Guards/auth.guard';
 
 export const routes: Routes = [
 
 
   { path: 'home', component:HomeComponent },
     { path: 'jobs', component:JobsComponent },
-    { path: 'add-job', component:AddJobComponent },
-    { path: 'job-requests', component:JobRequestsComponent },
+    { path: 'add-job', component:AddJobComponent,canActivate:[isEmployeeGuard] },
+    { path: 'job-requests', component:JobRequestsComponent,canActivate:[isAuthGuard] },
 
 
-    { path: 'booking-requests', component:RequestsComponent },
-    { path: 'add-room', component:AddRoomComponent },
+    { path: 'booking-requests', component:RequestsComponent,canActivate:[isAuthGuard] },
+    { path: 'add-room', component:AddRoomComponent ,canActivate:[isEmployeeGuard]},
 
      { path: 'register', component:RegisterComponent },
      { path: 'login', component:LoginComponent },

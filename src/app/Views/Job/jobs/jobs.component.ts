@@ -18,9 +18,7 @@ export class JobsComponent {
   data=new Loading<Job>();
 
   constructor(private backEndService:BackEndService<Job>,private jobService:JobService){
-
     this.data.load(this.backEndService.fetch('/jobs'));
-
   }
 
   apply(id:number){

@@ -15,6 +15,7 @@ export class BookingService {
   constructor(private alert:AlertService,private auth:AuthService ,private backendService:BackEndService<Booking>) { }
 
   Add(id:number){
+    if(this.auth.isAuthenticated()){
     this.data.user_id=this.auth.user().id;
     this.data.room_id=id;
     this.data.check_in_at=formatDate(new Date(), 'yyyy/MM/dd', 'en');;
@@ -24,6 +25,10 @@ export class BookingService {
         return res;
       }
     )
+    }else{
+      this.alert.alert('Booking','You should Login Befor Booking')
+
+    }
   }
   accept(booking:Booking){
 
