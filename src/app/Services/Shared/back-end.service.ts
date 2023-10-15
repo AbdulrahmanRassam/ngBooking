@@ -32,6 +32,19 @@ export class BackEndService<T> {
 
 
   fetch(url:string):Observable<T[]>{
+
+    this.httpOptions = {
+      headers: new HttpHeaders(
+          {
+            'Accept': 'application/json',
+            'Content-Type':  'application/x-www-form-urlencoded; charset=UTF-8;application/json',
+           'cleint_id': 'gvhcvhgcgcfgcfgghcghcg',
+           'key': 'samhKey75fghfvhgcgcgfcgfccxxcc',
+           'Authorization':'Bearer '+this.auth.getToken()
+          }
+        ),
+      }
+
     return this.http.get<FetchResponse<T>>(appConfig.backEndUrl+url,this.httpOptions).pipe(
       map((data) =>{
         this.alert.alert('Loading',data.msg)
@@ -47,8 +60,6 @@ export class BackEndService<T> {
   }
 
   post(url:string,datax:any):Observable<any>{
-    this.alert.alert('System ... ',' Submitting');
-
     this.httpOptions = {
       headers: new HttpHeaders(
           {
@@ -65,7 +76,7 @@ export class BackEndService<T> {
     return this.http.post<PostResponse<T>>(appConfig.backEndUrl+url,datax,this.httpOptions).pipe(
 
       map((data) =>{
-        this.alert.alert('System ... ',JSON.stringify(data));
+        this.alert.alert('System ... ',JSON.stringify(data.msg));
         return  data;
       }
       ),

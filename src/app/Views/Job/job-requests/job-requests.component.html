@@ -1,0 +1,84 @@
+<app-table>
+  <table id="datatable_outGoingTran" class="mt-8 divide-y rounded-lg divide-gray-200 " style="width: 100%">
+    <thead class="w-full  thead-light bg-slate-900 dark:bg-blue-100 text-gray-300 dark:text-gray-900 uppercase tracking-wider rounded-lg">
+
+
+        <tr class="w-full  py-6   text-xs font-medium ">
+                <th  class="px-6 py-3  text-xs font-medium  uppercase tracking-wider" scope="col">#</th>
+
+                <th class="px-6 text-xs font-medium  whitespace-nowrap" scope="col">{{'User'}}</th>
+                <th class="px-6 text-xs font-medium  whitespace-nowrap" scope="col">{{ 'Job'}}</th>
+                <th  class="px-6 text-xs font-medium whitespace-nowrap " scope="col">{{'Status'}}</th>
+                <th  class="px-6 text-xs font-medium whitespace-nowrap " scope="col">{{'Action'}}</th>
+
+        </tr>
+
+
+    </thead>
+    <tbody class=" divide-y divide-gray-200  " >
+
+
+                <tr *ngFor="let request of requests.data ;let i=index" class="whitespace-nowrap  border-b   hover:bg-indigo-50
+
+                    gap-y-2 bg-gradient-to-r from-white to-gray-50 dark:from-indigo-300/20
+                text-sm text-gray-900 dark:text-white">
+                    <th scope="row">{{i+1}}</th>
+
+                        <td   >
+                            <div class="px-6 py-2  flex justify-center whitespace-nowrap ">
+                                  <h3>{{request.user}}</h3>
+                            </div>
+                        </td>
+                        <td   >
+                            <div class="px-6 py-2  flex justify-center whitespace-nowrap ">
+                                  <h3>{{request.job_title}}</h3>
+                            </div>
+                        </td>
+
+                        <td   >
+
+                            <div class="px-6 py-0.5  flex justify-center whitespace-nowrap ">
+
+                              <container-element [ngSwitch]="request.status">
+                                    <div  *ngSwitchCase="'Pending'" >
+                                      <i class="fa-solid fa-check fa-2x text-blue-600"></i>
+                                    </div>
+                                    <div  *ngSwitchCase="'approved'" >
+                                           <i class="fa-solid fa-circle-check fa-2x text-green-600"></i>
+                                    </div>
+                                    <div  *ngSwitchDefault >
+                                      <i class="fa-solid fa-ban fa-2x text-gray-600"></i>
+                                    </div>
+
+                              </container-element>
+                            </div>
+                        </td>
+                        <td   >
+
+                            <div class="px-6 py-0.5  flex justify-center whitespace-nowrap ">
+
+                              <container-element [ngSwitch]="request.status">
+                                    <button  *ngSwitchCase="'submitted'" (click)="Accept(request)"
+                                          class=" inline-flex items-center p-1 h-8  ring-1 ring-inset ring-gray-500/10 bg-sky-300/50  hover:ring-gray-500/30 text-lg hover:bg-sky-300/70 rounded-full mx-2">
+                                      accept
+                                    </button>
+                                    <button  *ngSwitchCase="'accepted'" (click)="reject(request)"
+                                          class=" inline-flex items-center p-1 h-8  ring-1 ring-inset ring-gray-500/10 bg-pink-300/50  hover:ring-gray-500/30 text-lg hover:bg-sky-300/70 rounded-full mx-2">
+                                      Rejecte
+                                    </button>
+                                    <p  *ngSwitchDefault
+                                          class=" inline-flex items-center p-1 h-8  ring-1 ring-inset ring-gray-500/10 bg-gray-300/50  hover:ring-gray-500/30 text-lg hover:bg-sky-300/70 rounded-full mx-2">
+                                      Pending
+                                  </p>
+                              </container-element>
+                            </div>
+                        </td>
+
+                </tr>
+
+
+    </tbody>
+    <tfoot >
+    </tfoot>
+  </table>
+</app-table>
